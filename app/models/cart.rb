@@ -40,12 +40,18 @@ class Cart
   def remove_item_from_cart(product_id)
     item_count = $redis.hget(@cart, product_id)
     $redis.hdel(@cart, product_id)
-    @product_count -= item_count
+    @product_count -= item_count.to_i
   end
 
   def increase(product_id)
     $redis.hincrby(@cart, product_id, 1)
     @product_count += 1
+  end
+
+  def item_count(product_id)
+    item_count = $redis.hget(@cart, product_id)
+    product = Product.find(product_id)
+    product.count_in_cart = item_count.to_i
   end
 
   def decrease(product_id)

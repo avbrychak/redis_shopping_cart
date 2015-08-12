@@ -6,23 +6,29 @@
       %th Price
       %th Discount
       %th Price with discount
+      %th
+      %th
+      %th
   %tbody
     - @cart_products.each do |product|
-      %tr
+      %tr{:id => "cart-item-#{product.id}"}
         %td= product.name
-        %td= product.count_in_cart
-        %td= product.total_price
-        %td= product.total_discount
-        %td= product.price_with_discount
+        %td.item-cart-count= product.count_in_cart
+        %td.price-total= product.total_price
+        %td.total-discount= product.total_discount
+        %td.price-with-discount= product.price_with_discount
+        %td= link_to('Increase quantity', increase_count_in_cart_path(product.id), class: 'button increase-button', data: {action: 'increase'}, remote: true, method: :put)
+        %td= link_to('Decrease quantity', decrease_count_in_cart_path(product.id), class: 'button decrease-button', data: {action: 'decrease'}, remote: true, method: :put)
+        %td= link_to('Remove items from cart', remove_from_cart_path(product.id), class: 'button remove-button', data: {action: 'delete'}, remote: true, method: :put)
     %tr
       %td
         %strong Total
-      %td(colspan=4)= @cart.total_price
+      %td(colspan=4){:class=>'cart-total-price'}= @cart.total_price
     %tr
       %td
         %strong Discount
-      %td(colspan=4)= @cart.total_discount
+      %td(colspan=4){:class=>'cart-total-discount'}= @cart.total_discount
     %tr
       %td
         %strong Discounted price
-      %td(colspan=4)= @cart.price_with_discount
+      %td(colspan=4){:class=>'cart-price-with-discount'}= @cart.price_with_discount

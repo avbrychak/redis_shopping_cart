@@ -2,11 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$(window).load ->
-  $('a[data-target]').click (e) ->
+$(document).on "page:change", ->
+  $('a[data-remote]').on "ajax:success", (e, data, status, xhr) ->
     e.preventDefault()
-    $this = $(this)
-    if $this.data('target') == 'Add to cart'
-      url = $this.data('addurl')
-    $.ajax url: url, type: 'put', success: (data) ->
-      $('.cart-count').html(data)
+    $('.cart-count').html(data)

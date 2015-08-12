@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resource :cart, only: [:show] do
     put 'add/:product_id', to: 'carts#add', as: :add_to
     put 'remove/:product_id', to: 'carts#remove', as: :remove_from
+    put 'increase_count/:product_id', to: 'carts#increase_count', as: :increase_count_in
+    put 'decrease_count/:product_id', to: 'carts#decrease_count', as: :decrease_count_in
   end
 
   root to: 'products#index'

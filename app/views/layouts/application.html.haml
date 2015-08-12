@@ -5,9 +5,9 @@
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
     %title= content_for?(:title) ? yield(:title) : "Shopping Cart"
     %meta{:content => "#{content_for?(:description) ? yield(:description) : "Shopping Cart"}", :name => "description"}/
-    = stylesheet_link_tag 'application', media: 'all'
+    = stylesheet_link_tag 'application', media: 'all', "data-turbolinks-track" => true
     = javascript_include_tag 'vendor/modernizr'
-    = javascript_include_tag 'application'
+    = javascript_include_tag 'application', "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
     %header
