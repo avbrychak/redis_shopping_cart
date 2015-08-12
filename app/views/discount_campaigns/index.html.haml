@@ -1,0 +1,22 @@
+%p#notice= notice
+%h1 Listing Discount Campaigns
+%table
+  %thead
+    %tr
+      %th Name
+      %th Description
+      %th Discount
+      %th Product
+      %th{:colspan => "3"}
+  %tbody
+    - @discount_campaigns.each do |discount_campaign|
+      %tr
+        %td= discount_campaign.name
+        %td= discount_campaign.description
+        %td= discount_campaign.discount
+        %td= discount_campaign.product
+        %td= link_to 'Show', discount_campaign
+        %td= link_to 'Edit', edit_discount_campaign_path(discount_campaign)
+        %td= link_to 'Destroy', discount_campaign, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Discount campaign', new_discount_campaign_path

@@ -1,0 +1,14 @@
+- if user_signed_in?
+  %li= link_to 'Sign out', destroy_user_session_path, :method=>'delete'
+  %li
+    = link_to cart_path do
+      %i.fi-shopping-cart
+      My Cart (
+      %span.cart-count>= current_user.cart_count
+      )
+- else
+  %li= link_to 'Sign in', new_user_session_path
+  %li= link_to 'Sign up', new_user_registration_path
+- if user_signed_in?
+  - if current_user.try(:admin?)
+    %li= link_to 'Set discounts', discounts_path

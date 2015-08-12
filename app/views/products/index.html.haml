@@ -1,0 +1,11 @@
+%h1 List of available products
+- @products.each do |product|
+  .row
+    .large-4.medium-4.columns
+      %ul.pricing-table.active-tb.shadow.mrgn-20-top
+        %li.title= product.name
+        - if product.description.present?
+          %li.bullet-item= product.description
+        %li.price= number_to_currency(product.price)
+        %li.cta-button
+          = link_to 'Add to cart', '#', data: { addURL: add_to_cart_path(product.id), target: 'Add to cart' }, class: 'button text-transform'

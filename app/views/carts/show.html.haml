@@ -1,0 +1,28 @@
+%table
+  %thead
+    %tr
+      %th Name
+      %th Count
+      %th Price
+      %th Discount
+      %th Price with discount
+  %tbody
+    - @cart_products.each do |product|
+      %tr
+        %td= product.name
+        %td= product.count_in_cart
+        %td= product.total_price
+        %td= product.total_discount
+        %td= product.price_with_discount
+    %tr
+      %td
+        %strong Total
+      %td(colspan=4)= @cart.total_price
+    %tr
+      %td
+        %strong Discount
+      %td(colspan=4)= @cart.total_discount
+    %tr
+      %td
+        %strong Discounted price
+      %td(colspan=4)= @cart.price_with_discount

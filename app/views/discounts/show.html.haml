@@ -1,0 +1,10 @@
+%p#notice= notice
+%p
+  %strong Value in numbers:
+  = @discount.value_in_numbers
+%p
+  %strong Value in decimal:
+  = @discount.value_in_decimal
+= link_to 'Edit', edit_discount_path(@discount)
+|
+= link_to 'Back', discounts_path

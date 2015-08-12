@@ -1,0 +1,19 @@
+= form_for(@discount) do |f|
+  - if @discount.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@discount.errors.count, "error")
+        prohibited this discount from being saved:
+      %ul
+        - @discount.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.label :value_in_numbers
+    %br/
+    = f.text_field :value_in_numbers
+  .field
+    = f.label :value_in_decimal
+    %br/
+    = f.text_field :value_in_decimal
+  .actions
+    = f.submit
