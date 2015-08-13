@@ -8,4 +8,4 @@
           %li.bullet-item= product.description
         %li.price= number_to_currency(product.price)
         %li.cta-button
-          = link_to 'Add to cart', add_to_cart_path(product.id), class: 'button text-transform', remote: true, method: :put
+          = link_to 'Add to cart', add_to_cart_path(product.id), class: 'button text-transform add-to-cart-button', remote: true, method: :put

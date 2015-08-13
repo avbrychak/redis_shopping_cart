@@ -4,7 +4,7 @@ class Cart
   def initialize(cart)
     @cart = cart
     @error = ''
-    @product_count = 0
+    @products_count = 0
   end
 
   def cart_products

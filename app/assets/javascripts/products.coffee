@@ -3,6 +3,6 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on "page:change", ->
-  $('a[data-remote]').on "ajax:success", (e, data, status, xhr) ->
+  $('a.add-to-cart-button[data-remote]').on "ajax:success", (e, data, status, xhr) ->
     e.preventDefault()
     $('.cart-count').html(data)
