@@ -56,9 +56,9 @@ class Cart
 
   def decrease(product_id)
     item_count = $redis.hget(@cart, product_id)
-    if item_count == 0
+    if item_count.to_i == 0
       product = Product.find(product_id)
-      @error = "cannot decrease #{product.name} count it's already 0"
+      @error = "Cannot decrease #{product.name} count it's already 0"
     else
       $redis.hincrby(@cart, product_id, -1)
       @product_count -= 1

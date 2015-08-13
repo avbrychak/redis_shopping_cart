@@ -21,6 +21,7 @@ class CartsController < ApplicationController
                   cart_total_price: cart_total_price,
                   cart_total_discount: cart_total_discount,
                   cart_price_with_discount: cart_price_with_discount}
+
   end
 
   def increase_count
@@ -31,8 +32,13 @@ class CartsController < ApplicationController
     cart_count = @cart.product_count
     product.count_in_cart = item_count
     price_total = product.total_price
-    total_discount = product.total_discount
-    price_with_discount = product.price_with_discount
+    if item_count == 0
+      total_discount = 0
+      price_with_discount = 0
+    else
+      total_discount = product.total_discount
+      price_with_discount = product.price_with_discount
+    end
     cart_total_price = @cart.total_price
     cart_total_discount = @cart.total_discount
     cart_price_with_discount = @cart.price_with_discount
@@ -54,19 +60,28 @@ class CartsController < ApplicationController
     cart_count = @cart.product_count
     product.count_in_cart = item_count
     price_total = product.total_price
-    total_discount = product.total_discount
-    price_with_discount = product.price_with_discount
+    if item_count == 0
+      total_discount = 0
+      price_with_discount = 0
+    else
+      total_discount = product.total_discount
+      price_with_discount = product.price_with_discount
+    end
     cart_total_price = @cart.total_price
     cart_total_discount = @cart.total_discount
     cart_price_with_discount = @cart.price_with_discount
-    render json: {cart_count: cart_count,
-                  item_cart_count: count_in_cart,
-                  price_total: price_total,
-                  total_discount: total_discount,
-                  price_with_discount: price_with_discount,
-                  cart_total_price: cart_total_price,
-                  cart_total_discount: cart_total_discount,
-                  cart_price_with_discount: cart_price_with_discount}
+    if @cart.errors?
+      render json: {error: @cart.error}
+    else
+      render json: {cart_count: cart_count,
+                    item_cart_count: count_in_cart,
+                    price_total: price_total,
+                    total_discount: total_discount,
+                    price_with_discount: price_with_discount,
+                    cart_total_price: cart_total_price,
+                    cart_total_discount: cart_total_discount,
+                    cart_price_with_discount: cart_price_with_discount}
+    end
   end
 
   private
